@@ -1,0 +1,100 @@
+body, html{
+    margin: 0;
+    padding: 0;
+}
+
+*{
+    box-sizing: border-box;
+}
+
+
+main{
+    color: white;
+    font-family: sans-serif;
+    width: 100%;
+    height: 100%;
+    min-height:100vh;
+    display: grid;
+    grid-template-areas: 
+    "head head head head head head"
+    "projects main main main main main"
+    "projects main main main main main"
+    "projects main main main main main"
+
+
+    ;
+    grid-template-rows: 20%;
+    grid-template-columns: repeat(6, 1fr);
+    grid-auto-rows: 1fr;
+}
+
+.section{
+    background-color: rgb(50, 119, 50);
+    border: 1px solid rgb(241, 239, 239);
+    padding: 1rem;
+
+}
+
+.header{
+    grid-area: head;
+    text-align: right;
+    display: flex;
+
+}
+.head-text{
+    width: 50%;
+    margin: auto;
+    align-items: center;
+    display:flex;
+    justify-content: center;
+    gap: 30px;
+}
+.head-text h1{
+    font-size: 4rem;
+
+}
+
+/* .head-text p{
+    color: white;
+    transform: rotate(-30deg);
+    margin: 0;
+    padding: 0;
+    padding-top: 1.5rem;
+    
+
+} */
+
+.todo-list{
+    grid-area: main;
+}
+
+.projects-container{
+    grid-area: projects;
+}
+
+.project{
+    display: flex;
+    gap:1rem;
+    font-size:1.4rem;
+}
+
+.projects-container>h1{
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem;
+}
+
+.projects-container>h1>span{
+    font-size: 2.3rem;
+}
+
+.shia{
+    height: 15rem;
+    width: auto;
+    display: inline;
+}
+
+.checkbox-svg{
+    height:4rem;
+    width:4rem;
+}

@@ -16,14 +16,14 @@ main{
     min-height:100vh;
     display: grid;
     grid-template-areas: 
-    "head head head head head head"
-    "projects main main main main main"
-    "projects main main main main main"
-    "projects main main main main main"
+    "head head head head head head head"
+    "projects projects main main main main main"
+    "projects projects main main main main main"
+    "projects projects main main main main main"
     ;
     grid-template-rows: 20%;
-    grid-template-columns: repeat(6, 1fr);
-    grid-auto-rows: 1fr;
+    grid-template-columns: 16rem;
+    grid-auto-rows: 1fr; 
 }
 
 .section{
@@ -45,6 +45,7 @@ main{
     display:flex;
     align-items: center;
     justify-content: center;
+    gap: 20px;
 }
 .head-text h1{
     font-size: 4rem;
@@ -62,24 +63,38 @@ main{
     width:4rem;
 }
 
+.my-projects-title{
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+  
+.projects-plus{
+    font-size: 3rem;
+    color: rgb(255, 255, 200);
+}
+
+.projects-plus:hover{
+    cursor: pointer;
+    font-size: 3.1rem;
+    transition: 0.2s;
+
+}
 .todo-list{
     grid-area: main;
 }
 
 .projects-section{
     grid-area: projects;
+    padding: 0;
 }
 
-.project{
-    display: flex;
-    gap:1rem;
-    font-size:1.4rem;
-}
+
 
 .projects-container>h1{
     display: flex;
     justify-content: space-between;
-    padding: 1rem;
 }
 
 .projects-container>h1>span{
@@ -88,7 +103,6 @@ main{
 
 .form-cont{
     border-radius: 5px;
-    padding: 1rem;
     font-size: 1.3rem;
     background-color: green;
     position: absolute;
@@ -98,10 +112,7 @@ main{
     width: 30%;
     border: 1px solid black;
     backdrop-filter: blur(50px);
-
     display: none;
-
-
 }
 
 form{
@@ -120,13 +131,44 @@ form > button{
     cursor: pointer;
 }
 
-.projects-plus{
-    font-size: 3rem;
+
+.project{
+    width: 100%;
+    margin: 0;
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid rgba(255, 255, 255, 0.336);
+    border-top: ;
 }
 
-.projects-plus:hover{
+.icons{
+    display: flex;
+    margin-right: 1rem;
+    gap: 0.3rem;
     cursor: pointer;
-    font-size: 3.1rem;
-    transition: 0.2s;
+    opacity: 0;
+}
 
+.project:hover{
+    background-color: rgba(128, 128, 128, 0.562);
+    cursor: pointer;
+}
+
+.project:hover .icons{
+    opacity: 1;
+}
+
+.project-name{
+    gap:1rem;
+    font-size:1.4rem;
+}
+
+
+
+.icon{
+    width: 2rem;
+}
+
+.my-projects-title,.project-name{
+    margin-left: 1rem;
 }

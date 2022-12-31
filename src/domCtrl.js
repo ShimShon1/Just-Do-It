@@ -21,7 +21,6 @@ let TodoFormCont = document.querySelector(".todo-form-cont")
 
 let sections = document.querySelectorAll('.section')
 let projectsPlus = document.querySelector(".projects-plus")
-// let todosPlus = document.querySelector(".todos-plus")
 
 sections = Array.from(sections)
 let todoSection = document.querySelector(".todo-list")
@@ -37,21 +36,9 @@ projectFormBtn.addEventListener("click",function(){
 })
 
 
-// todosPlus.addEventListener("click", function(){
-//     formControl(TodoFormCont)
-// })
-
 todoFormBtn.addEventListener("click",function(){
     addTodo(openProject,TodoFormCont)
 })
-
-
-
-
-// projectFormCont.style.display = "block"
-
-
-
 
 let openProject = 0
 
@@ -71,9 +58,8 @@ export function displayProjects(){
         projectDiv.classList.add("project")
         iconsDiv.classList.add("icons")
 
-        done.classList.add("icon")
-        trash.classList.add("icon")
-        trash.classList.add("trash")
+        done.classList.add("icon","done")
+        trash.classList.add("icon","trash")
 
         iconsDiv.append(done)
         iconsDiv.append(trash)
@@ -82,10 +68,15 @@ export function displayProjects(){
             projects[i].name = "Some Project"
         }
 
+      
         let projectName = document.createElement("p")
         projectName.classList.add("project-name")
         
         projectName.textContent = `${projects[i].name}`
+
+
+    
+
 
         projectsCont.append(projectDiv)
         projectDiv.append(projectName)
@@ -103,10 +94,27 @@ export function displayProjects(){
 
 
     let allProject = Array.from(document.querySelectorAll(".project"))
+    let allDone = Array.from(document.querySelectorAll(".done"))
     for(let i = 0; i < allProject.length; i++){
         allProject[i].addEventListener("click",function(){displayTodos(i)})
+
+        allDone[i].addEventListener("click",function(){
+            if(!projects[i].done){
+                projects[i].done = true
+
+            }else{
+                projects[i].done = false
+            }
+            displayProjects()
+        })
+
+        if(projects[i].done == true){
+            allProject[i].style.textDecoration = "line-through"
+        }
     }
 
+
+   
 }
 
 export function formControl(form){

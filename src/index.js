@@ -54,11 +54,10 @@ function rmvTodo(i){
 
 }
 
-let release = new Project("Armdilo to garbadge","22.3.2023",3,false)
+let release = new Project("Armadilo to garbadge","22.3.2023",3,false)
 release.pushTodo("adpot a pet")
-release.pushTodo("fuck a duck")
+release.pushTodo("aaa a duck")
 
-release.pushProject()
 release.pushProject()
 console.log(release);
 

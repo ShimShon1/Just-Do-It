@@ -21,12 +21,14 @@ main{
     "projects projects todo todo todo todo todo"
     "projects projects todo todo todo todo todo"
     ;
-    grid-template-columns: repeat( 7, minmax(250px, 1fr) );
+    grid-template-columns: repeat( 7,  1fr );
     grid-template-rows: 18%;
+    background-image: linear-gradient(-50deg,rgb(70, 165, 80)0%,rgb(20, 86, 20) );
+
 }
 
 .section{
-    background-color: rgb(50, 119, 50);
+    overflow: hidden;
     border: 1px solid rgb(241, 239, 239);
     padding: 1rem;
 
@@ -36,6 +38,8 @@ main{
     grid-area: head;
     text-align: right;
     display: flex;
+    background-image: linear-gradient(50deg,rgb(64, 163, 64),rgb(31, 122, 31));
+
 
 }
 .head-text{
@@ -109,35 +113,6 @@ main{
     font-size: 2.3rem;
 }
 
-.form-cont{
-    border-radius: 5px;
-    font-size: 1.3rem;
-    background-color: green;
-    position: absolute;
-    top: 10%;
-    left: 35%;
-    height: 50%;
-    width: 30%;
-    border: 1px solid black;
-    backdrop-filter: blur(50px);
-    display: none;
-}
-
-form{
-    height: 70%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    gap: 1rem;
-}
-
-form > input{
-    width: 30%;
-}
-
-form > button{
-    cursor: pointer;
-}
 
 
 .project{
@@ -145,8 +120,9 @@ form > button{
     margin: 0;
     display: flex;
     justify-content: space-between;
+    /* text-decoration: line-through; */
+
     border: 1px solid rgba(255, 255, 255, 0.336);
-    border-top: ;
 }
 
 .icons{
@@ -173,6 +149,7 @@ form > button{
 li{
     font-size: 1.5rem;
     line-height: 3rem;
+
 }
 
 .project:hover,.todo-item:hover{
@@ -199,3 +176,58 @@ li{
     margin-left: 1rem;
 }
 
+
+.form-cont{
+    border-radius: 5px;
+    font-size: 1.3rem;
+    background-color: green;
+    background-image: linear-gradient(180deg,rgb(58, 133, 58)0%,rgb(37, 100, 37) );
+    position: absolute;
+    top: 10%;
+    left: 35%;
+    height: 40%;
+    width: 20%;
+    border: 2px double white;
+    border-radius: 5%;
+    padding: 2rem;
+    backdrop-filter: blur(50px);
+    justify-content: center;
+    
+}
+
+button{
+    width: 50%;
+    height: 2rem;
+    font-size: 1.1rem;
+}
+
+form{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+form > input, select{
+    width: 50%;
+    margin-left: 0.5rem;
+    height: 2rem;
+}
+
+form > button{
+    cursor: pointer;
+    margin-left: 0.5rem;
+
+}
+
+
+
+.project-form-cont{
+    display: none;
+}
+
+.todo-form-cont{
+    display: none;
+    height: 15%;
+}

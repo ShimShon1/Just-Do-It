@@ -96,6 +96,7 @@ main{
     display: flex;
     align-items: center;
     gap: 1rem;
+    position: relative;
 }
 .projects-section{
     grid-area: projects;
@@ -230,4 +231,18 @@ form > button{
 .todo-form-cont{
     display: none;
     height: 15%;
+}
+
+
+.priority-color{
+    color: rgb(241, 76, 76);
+    margin-right: 0.2rem;
+}
+
+.due-date{
+    position: absolute;
+    top: 0;
+    margin: 0;
+    font-size: 0.9rem;
+    color: rgb(224, 223, 223);
 }

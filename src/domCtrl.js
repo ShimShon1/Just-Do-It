@@ -1,5 +1,5 @@
-import {rmvProject,projects,addProject,addTodo,rmvTodo} from ".";
-export {nameInp,dueInp,todoNameInp,displayTodos,openProject,}
+import {rmvProject,projects,addProject,addTodo} from ".";
+export {nameInp,dueInp,todoNameInp,displayTodos,openProject,PrInput}
 import doneSvg from "./check-bold.svg" 
 import trashSvg from "./trash-can.svg"
 
@@ -11,8 +11,7 @@ let nameInp = document.querySelector("#name")
 let dueInp = document.querySelector("#due-date")
 
 let todoNameInp = document.querySelector("#todo-name")
-
-
+let PrInput = document.querySelector("#priority")
 let projectsCont = document.querySelector(".projects-cont")
 let projectFormCont = document.querySelector(".project-form-cont")
 let TodoFormCont = document.querySelector(".todo-form-cont")
@@ -41,8 +40,10 @@ todoFormBtn.addEventListener("click",function(){
 })
 
 let openProject = 0
-
 let formShown = false
+
+
+
 export function displayProjects(){
     projectsCont.textContent = ''
     for(let i in projects){
@@ -70,17 +71,31 @@ export function displayProjects(){
 
       
         let projectName = document.createElement("p")
+        let priorityColor = document.createElement("span")
+
+        priorityColor.classList.add("priority-color")
         projectName.classList.add("project-name")
+        
+        priorityColor.textContent = "|"
         
         projectName.textContent = `${projects[i].name}`
 
 
-    
-
-
+        projectName.prepend(priorityColor)
         projectsCont.append(projectDiv)
         projectDiv.append(projectName)
         projectDiv.append(iconsDiv)
+
+
+        if(projects[i].priority == 1){
+            priorityColor.style.color = 'grey' ;
+        }else if(projects[i].priority == 2){
+            priorityColor.style.color = 'white' ;
+
+        }else{
+            priorityColor.style.color = 'rgb(241, 76, 76)'  
+
+        }
     }
 
 
@@ -153,17 +168,20 @@ function displayTodos(i){
     let todosTitle = document.createElement("div")
     let projectTitle = document.createElement("h1")
     let todosPlus = document.createElement("span")
+    let duedateText = document.createElement("p")
 
+    duedateText.classList.add("due-date")
     todosTitle.classList.add("my-todos-title")
     todosPlus.textContent = "+"
     todosPlus.classList.add("plus","todos-plus")
 
-
-
+    duedateText.textContent = `due-date: ${projects[i].dueDate} `
     projectTitle.textContent = projects[i].name
     todoSection.append(todosTitle)
+    todosTitle.append(duedateText)
     todosTitle.append(projectTitle)
     todosTitle.append(todosPlus)
+    
 
 
     todosPlus.addEventListener("click", function(){
@@ -183,24 +201,52 @@ function displayTodos(i){
         trash.src = trashSvg
         
         todoItem.classList.add("todo-item")
-        todoItem.textContent = projects[i].todos[t]
+        todoItem.textContent = projects[i].todos[t].name
         todosUl.append(todoItem)
         
         icons.classList.add("icons")
-        done.classList.add("icon")
+        done.classList.add("icon","todo-done")
         trash.classList.add("icon","todo-trash")
 
         icons.append(done,trash)
         todoItem.prepend(icons)
+
+
+
         
     }
-
+    let allTodos = Array.from(document.querySelectorAll(".todo-item"))
+    for(let i in allTodos){
+        if(projects[openProject].todos[i].done){
+            allTodos[i].style.textDecoration = "line-through"
+        }else{
+            allTodos[i].style.textDecoration = "auto";
+        }
+    }
     let allIconTrash = Array.from(document.querySelectorAll(".todo-trash"))
-    
+    let allIconDone = Array.from(document.querySelectorAll(".todo-done"))
+
     for(let i in allIconTrash){
-        allIconTrash[i].addEventListener("click",rmvTodo)
+        allIconTrash[i].addEventListener("click",function(){
+            projects[openProject].todos.splice(i,1)
+            displayTodos(openProject)
+        })
     }
 
+    for(let i in allIconDone){
+        allIconDone[i].addEventListener("click",function(){
+            if(!projects[openProject].todos[i].done){
+                projects[openProject].todos[i].done = true
+                displayTodos(openProject)
+            }else{
+                projects[openProject].todos[i].done = false
+                displayTodos(openProject)
+
+            }
+           
+
+        })
+    }
 
 
 }

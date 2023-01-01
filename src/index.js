@@ -1,5 +1,5 @@
-import {displayProjects,formControl,nameInp,dueInp, todoNameInp,displayTodos,openProject} from "./domCtrl.js"
-export {projects,rmvProject,addProject,addTodo,rmvTodo}
+import {displayProjects,formControl,nameInp,dueInp,PrInput, todoNameInp,displayTodos,openProject} from "./domCtrl.js"
+export {projects,rmvProject,addProject,addTodo}
 
 //array to hold all project objects and use it to display them on dom 
 const projects = []
@@ -16,20 +16,20 @@ class Project{
         projects.push(this)
     }
 
-    pushTodo(todo){
-        this.todos.push(todo)
+    pushTodo(name, done = false){
+        this.todos.push(new Todo(name,done))
     }
 }
 
 class Todo{
-    constructor(name,desc){
+    constructor(name,done = false){
         this.name = name
-        this.desc = desc
+        this.done = done
     }
 }
 
 function addProject(form){
-    projects.push(new Project(nameInp.value,dueInp.value,3))
+    projects.push(new Project(nameInp.value,dueInp.value,PrInput.value))
     formControl(form)
     displayProjects()
 }
@@ -40,26 +40,19 @@ function rmvProject(i){
 }
 
 function addTodo(i, form){
-    projects[i].todos.push(todoNameInp.value)
-    console.log(projects);
+    projects[i].todos.push(new Todo(todoNameInp.value))
     displayTodos(i)
-    console.log(form);
     formControl(form)
 
 }
 
-function rmvTodo(i){
-    projects[openProject].todos.splice(i,1)
-    displayTodos(openProject)
 
-}
-
-let release = new Project("Armadilo to garbadge","22.3.2023",3,false)
-release.pushTodo("adpot a pet")
-release.pushTodo("aaa a duck")
+let release = new Project("Armadilo to garbadge","2023-01-10",3,false)
+release.pushTodo("adpot a pet",false)
+release.pushTodo("aaa a duck",false)
 
 release.pushProject()
-console.log(release);
 
 displayProjects()
 displayTodos(openProject)
+

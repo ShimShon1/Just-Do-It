@@ -1,4 +1,4 @@
-import {rmvProject,projects,addProject,addTodo} from ".";
+import {currentProjectsList,rmvProject,projects,addProject,addTodo,sortedProjects} from ".";
 export {nameInp,dueInp,todoNameInp,displayTodos,openProject,PrInput}
 import doneSvg from "./check-bold.svg" 
 import trashSvg from "./trash-can.svg"
@@ -6,26 +6,19 @@ import trashSvg from "./trash-can.svg"
 //dom elements
 let projectFormBtn = document.querySelector(".project-form-btn")
 let todoFormBtn = document.querySelector(".todo-form-btn")
-
 let nameInp = document.querySelector("#name")
 let dueInp = document.querySelector("#due-date")
-
 let todoNameInp = document.querySelector("#todo-name")
 let PrInput = document.querySelector("#priority")
 let projectsCont = document.querySelector(".projects-cont")
 let projectFormCont = document.querySelector(".project-form-cont")
 let TodoFormCont = document.querySelector(".todo-form-cont")
-
-
-
 let sections = document.querySelectorAll('.section')
-let projectsPlus = document.querySelector(".projects-plus")
-
 sections = Array.from(sections)
+let projectsPlus = document.querySelector(".projects-plus")
 let todoSection = document.querySelector(".todo-list")
 
 //listeners
-
 projectsPlus.addEventListener("click", function(){
     formControl(projectFormCont)
 })
@@ -34,19 +27,19 @@ projectFormBtn.addEventListener("click",function(){
     addProject(projectFormCont)
 })
 
-
 todoFormBtn.addEventListener("click",function(){
     addTodo(openProject,TodoFormCont)
 })
 
 let openProject = 0
 let formShown = false
-
-
-
-export function displayProjects(){
+export function displayProjects(projectsList){
+    if(projectsList != projects){
+        projectsList = sortedProjects()
+    }
+    
     projectsCont.textContent = ''
-    for(let i in projects){
+    for(let i in projectsList){
 
         let done = new Image()
         let trash = new Image()
@@ -65,31 +58,25 @@ export function displayProjects(){
         iconsDiv.append(done)
         iconsDiv.append(trash)
 
-        if (projects[i].name == ''){
-            projects[i].name = "Some Project"
+        if (projectsList[i].name == ''){
+            projectsList[i].name = "Some Project"
         }
 
-      
         let projectName = document.createElement("p")
         let priorityColor = document.createElement("span")
 
         priorityColor.classList.add("priority-color")
         projectName.classList.add("project-name")
-        
         priorityColor.textContent = "|"
-        
         projectName.textContent = `${projects[i].name}`
-
-
         projectName.prepend(priorityColor)
         projectsCont.append(projectDiv)
         projectDiv.append(projectName)
         projectDiv.append(iconsDiv)
 
-
-        if(projects[i].priority == 1){
+        if(projectsList[i].priority == 1){
             priorityColor.style.color = 'grey' ;
-        }else if(projects[i].priority == 2){
+        }else if(projectsList[i].priority == 2){
             priorityColor.style.color = 'white' ;
 
         }else{
@@ -98,8 +85,6 @@ export function displayProjects(){
         }
     }
 
-
-    
     let allTrash = Array.from(document.querySelectorAll(".trash"))
     for(let i = 0; i < allTrash.length; i++){
         allTrash[i].addEventListener("click",function(){
@@ -107,29 +92,25 @@ export function displayProjects(){
         })
     }
 
-
     let allProject = Array.from(document.querySelectorAll(".project"))
     let allDone = Array.from(document.querySelectorAll(".done"))
     for(let i = 0; i < allProject.length; i++){
         allProject[i].addEventListener("click",function(){displayTodos(i)})
 
         allDone[i].addEventListener("click",function(){
-            if(!projects[i].done){
-                projects[i].done = true
+            if(!projectsList[i].done){
+                projectsList[i].done = true
 
             }else{
-                projects[i].done = false
+                projectsList[i].done = false
             }
-            displayProjects()
+            displayProjects(currentProjectsList)
         })
 
-        if(projects[i].done == true){
+        if(projectsList[i].done == true){
             allProject[i].style.textDecoration = "line-through"
         }
     }
-
-
-   
 }
 
 export function formControl(form){
@@ -137,14 +118,10 @@ export function formControl(form){
         form.style.display = "none"
         formShown = false
         blurOnForm()
-
-
     }else{
         form.style.display = "block"
         formShown = true
         blurOnForm()
-
-
     }
 }
 
@@ -174,7 +151,6 @@ function displayTodos(i){
     todosTitle.classList.add("my-todos-title")
     todosPlus.textContent = "+"
     todosPlus.classList.add("plus","todos-plus")
-
     duedateText.textContent = `due-date: ${projects[i].dueDate} `
     projectTitle.textContent = projects[i].name
     todoSection.append(todosTitle)
@@ -182,8 +158,6 @@ function displayTodos(i){
     todosTitle.append(projectTitle)
     todosTitle.append(todosPlus)
     
-
-
     todosPlus.addEventListener("click", function(){
             formControl(TodoFormCont)
     })
@@ -203,17 +177,12 @@ function displayTodos(i){
         todoItem.classList.add("todo-item")
         todoItem.textContent = projects[i].todos[t].name
         todosUl.append(todoItem)
-        
         icons.classList.add("icons")
         done.classList.add("icon","todo-done")
         trash.classList.add("icon","todo-trash")
-
         icons.append(done,trash)
         todoItem.prepend(icons)
 
-
-
-        
     }
     let allTodos = Array.from(document.querySelectorAll(".todo-item"))
     for(let i in allTodos){
@@ -243,8 +212,6 @@ function displayTodos(i){
                 displayTodos(openProject)
 
             }
-           
-
         })
     }
 

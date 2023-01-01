@@ -7,6 +7,10 @@
     <title>Just Do It</title>
     <script src="main.js" defer></script>
     <link rel="stylesheet" href="styles.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
 </head>
 <body>
     <main>
@@ -19,83 +23,27 @@
         </div>
         <div class="section projects-section">
             <div class="my-projects-title">
-                <h1>My Projects </h1>
-                <span class="projects-plus plus">+</span>
 
-            </div>
-            <div class="projects-cont">
-                <div class="project">
-
-                    <p class="project-name"><span class="priority-color">|</span> Lord Monkey</p>
-
-                    <div class="icons">
-                        <img src="2bfa746129cbcb2aa35e.svg" alt="" class="icon">
-                        <img src="7f8dac09110a8eff5ef7.svg" alt="" class="icon">
-                    </div>
-
+                <div class="title-plus">
+                    <h1 class="my-projects">My Projects </h1>
+                    <span class="projects-plus plus">+</span>
                 </div>
-            </div>
-        </div>
-        <div class="section todo-list">
-
-            <div class="my-todos-title">
-                <h1>Lord Monkey </h1>
-                <span class="todos-plus plus">+</span>
-                <p class="due-date">(Due-date: 23.3.2011)</p>
-
-
-
-            </div>
-
-
-
-            <ul class="todos-ul">
-                <li class="todo-item">
-                    <div class="icons">
-                        <img src="734bea1d8ce5d3d011aa.svg" alt="" class="icon">
-                        <img src="7f8dac09110a8eff5ef7.svg" alt="" class="icon">
-                    </div>
-
-                    
-                    bake a cake</li>
                 
-                    <li class="todo-item">
-                        <div class="icons">
-                            <img src="734bea1d8ce5d3d011aa.svg" alt="" class="icon">
-                            <img src="7f8dac09110a8eff5ef7.svg" alt="" class="icon">
-                        </div>
-    
-                        
-                        Bake a cakeaaaaaaaaaaaaaaaaaaaaaaa</li>
+                <select name="" id="" class="sort-by">
+                    <option value="deafult">Sort By</option>
+                    <option value="priority">Priority</option>
+                </select>
 
-                        <li class="todo-item">
-                            <div class="icons">
-                                <img src="734bea1d8ce5d3d011aa.svg" alt="" class="icon">
-                                <img src="7f8dac09110a8eff5ef7.svg" alt="" class="icon">
-                            </div>
-        
-                            
-                            bake a cake</li>
-                            <li class="todo-item">
-                                <div class="icons">
-                                    <img src="734bea1d8ce5d3d011aa.svg" alt="" class="icon">
-                                    <img src="7f8dac09110a8eff5ef7.svg" alt="" class="icon">
-                                </div>
-            
-                                
-                                bake a cake</li>
-            </ul>
-
-
+            </div>
+            <div class="projects-cont"></div>
         </div>
+        <div class="section todo-list"></div>
         <div class="project-form-cont form-cont">
             <form action="">
                 <label for="name">Project-Name:</label>
                 <input name="name" id="name" type="text" >
-                
                 <label for="due-date">due-date:</label>
                 <input name="due-date" id="due-date" type="date">
-
                 <label for="priority">Priorty:</label>
                 <select name="" id="priority" >
                     <option value="1">1 (Grey)</option>
@@ -116,12 +64,8 @@
                 <input name="todo-name" id="todo-name" type="text">
 
                 <button class="todo-form-btn" type="button">Create Todo</button>
-
             </form>
-
         </div>
-     
-        
     </main>
 
 </body>
